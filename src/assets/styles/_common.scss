@@ -1,0 +1,56 @@
+// this are the resuable blocks of style so just extend it where you want to use it.
+
+
+$primary-font: Plus Jakarta Sans;
+$text-primary-color: #091E42;
+
+@mixin label-style {
+    font-family: $primary-font;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: var(--colors-style-neutrals-n-900, #091E42);
+}
+
+@mixin input-layout-style {
+    height: 48px;
+    border-radius: 6px;
+    border: 1px solid var(--colors-style-neutrals-n-40, #DFE2E6);
+    background: var(--colors-style-neutrals-n-0, #FFF);
+}
+
+@mixin input-text-style {
+    font-family: $primary-font;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #7A8699;
+}
+
+@mixin btn-text-style {
+    font-family: $primary-font;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0em;
+    text-align: center;
+}
+
+@mixin scrollbar-style {
+    &::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: #ffffff;
+        background-color: transparent !important;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: #d9d9d9;
+        border-radius: 100px;
+    }
+}

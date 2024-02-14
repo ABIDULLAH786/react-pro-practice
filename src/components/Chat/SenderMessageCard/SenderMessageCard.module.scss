@@ -1,0 +1,118 @@
+.message_info_container {
+    display: flex;
+    width: 350px;
+    min-width: 300px;
+    align-items: flex-start;
+    gap: 12px;
+
+    .sender_avatar {
+        width: 40px;
+        height: 40px;
+        flex-shrink: 0;
+    }
+
+    // message body-sender-name and time area style
+    .message_container {
+        display: flex;
+        padding: 10px 14px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 12px;
+        align-self: stretch;
+        width: 100%;
+        border-radius: 0px 8px 8px 8px;
+        background: #F2F4F7;
+
+        box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.06), 0px 1px 3px 0px rgba(16, 24, 40, 0.10);
+
+        .message_sender_and_time_container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            align-self: stretch;
+
+            .sender_name {
+                flex: 1 0 0;
+                color: #344054;
+
+                // font-family: Inter;
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 20px;
+            }
+
+            .message_time {
+                color: #667085;
+
+                // font-family: Inter;
+                font-size: 12px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 18px;
+            }
+
+
+        }
+
+        .file_container {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            align-self: stretch;
+
+            .file_icon {
+                display: flex;
+                width: 28px;
+                height: 28px;
+                justify-content: center;
+                align-items: center;
+                border: solid 2px #ffffff;
+                border-radius: 50%;
+            }
+
+            .file_name_size_container {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 4px;
+                flex: 1 0 0;
+
+                .file_name {
+
+                    align-self: stretch;
+
+                    color: var(--Gray-700, #344054);
+
+                    // font-family: Inter;
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: 20px;
+                }
+
+                .file_size {
+                    align-self: stretch;
+                    color: var(--Gray-500, #667085);
+
+                    /* Text sm/Regular */
+                    // font-family: Inter;
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 20px;
+                    /* 142.857% */
+                }
+            }
+        }
+    }
+}
+
+
+@media (max-width: 400px) {
+    .message_info_container {
+        width: 300px;
+    }
+
+}

@@ -1,0 +1,7 @@
+// @import url('../../_variables.scss');
+@use '../../variables';
+
+.root {
+    width: 100%;
+    background-color: variables.$color-white;
+}
