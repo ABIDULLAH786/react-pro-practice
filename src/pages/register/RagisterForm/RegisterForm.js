@@ -3,19 +3,12 @@ import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { registerUserAsync } from '../../../redux/slice/auth';
 import { LockIcon } from '../../../assets/icons/lock-icon';
-import FormField from '../../FormFiled/FormField';
 import { Box, Button } from '@mui/material';
 import styles from './register.module.scss'
+import FormField from '../../../components/FormFiled/FormField';
 
-function RegisterForm() {
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    function handleRegister() {
-        dispatch(registerUserAsync({ name, email, password }))
-    }
+function RegisterForm({ formData, setFormData, handleRegister }) {
+
     return (
         <div className={styles.container}>
             <div className={styles.register_container}>
@@ -26,9 +19,9 @@ function RegisterForm() {
                 <Box className={styles.form_container}>
                     {/* key input */}
                     <div className={styles.input_container}>
-                        <FormField value={name} setValue={setName} label={"Name"} type='text' />
-                        <FormField value={email} setValue={setEmail} label={"Email"} type='email' />
-                        <FormField value={password} setValue={setPassword} label={"Password"} type='password' />
+                        <FormField value={formData?.name} setValue={e => setFormData({ ...formData, name: e.target.value })} label={"Name"} type='text' />
+                        <FormField value={formData?.email} setValue={e => setFormData({ ...formData, email: e.target.value })} label={"Email"} type='email' />
+                        <FormField value={formData?.password} setValue={e => setFormData({ ...formData, password: e.target.value })} type='password' />
                     </div>
 
                     {/* button */}

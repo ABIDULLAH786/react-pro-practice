@@ -1,11 +1,11 @@
 import { IconButton, TableCell, TableRow } from '@mui/material'
 import React from 'react'
-import UserCard from '../../../Chat/UserCard/UserCard'
-import styles from "../Table.module.scss"
-import MultiSelect from '../../MultiSelect/MultiSelect'
+import styles from "./Table.module.scss"
 import { Link } from 'react-router-dom'
 import { ArrowNext } from '../../../../assets/icons/arrow-next'
 import { userData } from '../../../../assets/data/usersData'
+import UserCard from '../../../../components/Chat/UserCard/UserCard'
+import MultiSelect from '../../../../components/common/MultiSelect/MultiSelect'
 
 function ChatsTableRows({ rows }) {
     return rows?.map((row) => <TableRow key={row.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>

@@ -1,7 +1,6 @@
-import useWindowDimensions from "../../../hooks/useWindowDimensions";
+import useWindowDimensions from "../../../../hooks/useWindowDimensions";
 import styles from './Pagination.module.scss'
-import ButtonFilled from "../Button/ButtonFilled";
-import { Button } from "@mui/material";
+import ButtonFilled from "../../../../components/common/Button/ButtonFilled";
 const Pagination = ({
     dataPerPage,
     totalData,

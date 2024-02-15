@@ -1,11 +1,21 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { selectIsUserLogin } from '../../redux/slice/auth';
-import { useSelector } from 'react-redux';
-import LoginFrom from '../../components/Forms/LoginForm/LoginFrom';
+import { useDispatch, useSelector } from 'react-redux';
+import LoginFrom from './LoginForm/LoginFrom';
 import { useNavigate } from 'react-router-dom';
 const Login = () => {
-
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    
+    const [formData, setFormData] = useState({
+        email:"",
+        password:""
+    });
+    function handleSignin() {
+        localStorage.setItem("role", "admin")
+        navigate("/admin/chats")
+        // dispatch(loginUserAsync({ email, password }))
+    }
 
     const isLogin = useSelector(selectIsUserLogin)
 
@@ -17,7 +27,7 @@ const Login = () => {
 
     return (
         <div >
-            <LoginFrom />
+            <LoginFrom setFormData={setFormData} formData={formData} handleSignin={handleSignin}/>
         </div>
     )
 

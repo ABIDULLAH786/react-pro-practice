@@ -1,6 +1,6 @@
 
 import React, { useContext, useEffect, useState } from 'react'
-import Pagination from '../../Pagination/Pagination';
+import Pagination from '../Pagination/Pagination';
 import { UserTableContext } from '../../../../context/UsersTableContext';
 
 function ChatsTableFooter({data}) {

@@ -1,8 +1,8 @@
 import { IconButton, TableCell, TableRow } from '@mui/material'
 import React from 'react'
-import styles from '../Table.module.scss'
-import UserCard from '../../../Chat/UserCard/UserCard'
-import SelectDropdown from '../../SelectDropdown/SelectDropdown'
+import styles from './Table.module.scss'
+import UserCard from '../../../../components/Chat/UserCard/UserCard'
+import SelectDropdown from '../../../../components/common/SelectDropdown/SelectDropdown'
 import { DeleteIcon } from '../../../../assets/icons/delete-icon'
 
 function UsersTableRows({ rows }) {

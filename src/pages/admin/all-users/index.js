@@ -1,7 +1,7 @@
 import React from 'react'
 import PageHeader from '../../../components/admin/PageHeader/PageHeader'
 import styles from "./all-users.module.scss"
-import UsersTable from '../../../components/common/Tables/UsersTables/UsersTable'
+import UsersTable from './UsersTables/UsersTable' 
 import AllUsersControls from '../../../components/admin/AllUsersControls/AllUsersControls'
 import { Divider } from '@mui/material'
 import { userData } from '../../../assets/data/usersData'

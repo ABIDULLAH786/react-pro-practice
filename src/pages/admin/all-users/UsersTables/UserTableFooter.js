@@ -1,6 +1,6 @@
 
 import React, {  useState } from 'react'
-import Pagination from '../../Pagination/Pagination';
+import Pagination from '../Pagination/Pagination';
 
 function UserTableFooter({data}) {
     const [currentPage, setCurrentPage] = useState(1);

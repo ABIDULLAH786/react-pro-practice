@@ -1,0 +1,38 @@
+@import url('../../../../assets/styles/_common.scss');
+.root {
+    &::-webkit-scrollbar {
+            width: 8px;
+        }
+    
+        &::-webkit-scrollbar-track {
+            background: #ffffff;
+            background-color: transparent !important;
+        }
+    
+        &::-webkit-scrollbar-thumb {
+            background: #d9d9d9;
+            border-radius: 100px;
+        }
+    .table_heading {
+
+        color: var(--Gray-500, #667085);
+
+        // font-family: Inter;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 18px;
+    }
+
+    .row_data {
+        color: var(--Gray-500, #667085);
+
+        /* Text sm/Regular */
+        // font-family: Inter;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px;
+        /* 142.857% */
+    }
+}

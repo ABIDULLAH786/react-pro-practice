@@ -18,7 +18,7 @@ function FormField({ value, setValue, label, type = 'text', icon }) {
                         </InputAdornment>
                     }
                     value={value}
-                    onChange={e => setValue(e.target.value)}
+                    onChange={setValue}
                 />
 
             </FormControl>

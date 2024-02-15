@@ -2,7 +2,7 @@ import React from 'react'
 import PageHeader from '../../../components/admin/PageHeader/PageHeader'
 import styles from "./all-chats.module.scss"
 import { chatsData } from '../../../assets/data/chatsData'
-import ChatsTable from '../../../components/common/Tables/ChatsTable/ChatsTable'
+import ChatsTable from './ChatsTable/ChatsTable'
 function AllChats() {
     return (
         <div className={styles.root}>

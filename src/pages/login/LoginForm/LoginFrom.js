@@ -1,24 +1,14 @@
 import React, { useState } from 'react'
 import { LockIcon } from '../../../assets/icons/lock-icon';
 import { Box, Button } from '@mui/material';
-import FormField from '../../FormFiled/FormField';
+import FormField from '../../../components/FormFiled/FormField';
 import styles from './login.module.scss'
-import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import {UserIcon} from '../../../assets/icons/user-icon' 
-import {KeyIcon} from '../../../assets/icons/key-icon' 
+import { Link } from 'react-router-dom';
+import { UserIcon } from '../../../assets/icons/user-icon'
+import { KeyIcon } from '../../../assets/icons/key-icon'
 
-function LoginFrom() {
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
-    
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    function handleSignin() {
-        localStorage.setItem("role", "admin")
-        navigate("/admin/chats")
-        // dispatch(loginUserAsync({ email, password }))
-    }
+function LoginFrom({ formData, setFormData, handleSignin }) {
+
     return (
         <div className={styles.container}>
             <div className={styles.login_container}>
@@ -29,8 +19,8 @@ function LoginFrom() {
                 <Box className={styles.form_container}>
                     {/* key input */}
                     <div className={styles.input_container}>
-                        <FormField value={email} setValue={setEmail} label={"Email"} type='email' icon={<UserIcon color='#667085' />} />
-                        <FormField value={password} setValue={setPassword} label={"Password"} type='password' icon={<KeyIcon />} />
+                        <FormField value={formData?.email} setValue={e => setFormData({ ...formData, email: e.target.value })} label={"Email"} type='email' icon={<UserIcon color='#667085' />} />
+                        <FormField value={formData?.password} setValue={e => setFormData({ ...formData, password: e.target.value })} label={"Password"} type='password' icon={<KeyIcon />} />
                     </div>
 
                     {/* button */}
