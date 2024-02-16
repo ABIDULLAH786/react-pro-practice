@@ -9,8 +9,9 @@ import styles from "./Table.module.scss"
 import TableTopRow from './TableTopRow';
 import ChatsTableRows from './ChatsTableRows';
 import ChatsTableFooter from './ChatsTableFooter';
+import Pagination from '../Pagination/Pagination';
 
-export default function ChatsTable({ columns, rows }) {
+export default function ChatsTable({ columns, rows, total, perPageRec, page, handlePageChange }) {
 
 
 
@@ -26,7 +27,12 @@ export default function ChatsTable({ columns, rows }) {
 
             </Table>
             <Box style={{ width: '100%' }}>
-                <ChatsTableFooter data={rows} />
+                <Pagination
+                    totalData={total}
+                    dataPerPage={perPageRec}
+                    paginate={handlePageChange}
+                    currentPage={page}
+                />
             </Box>
         </TableContainer >
     );

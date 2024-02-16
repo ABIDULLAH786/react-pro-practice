@@ -2,7 +2,7 @@ import React from 'react'
 import UserCard from './UserCard/UserCard'
 
 function UsersList() {
-    let usersList = ["Abid Ullah", "Muhammad Farhan", "Faizan Ahmed", "Lana Steiner", "Demi Wilkinson", "Demi Wilkinson", "Demi Wilkinson", "Demi Wilkinson", "Demi Wilkinson", "Demi Wilkinson"]
+    let usersList = ["Abid Ullah", "Muhammad Farhan", "Faizan Ahmed", "Lana Steiner", "Demi Lana", "Lana Demi", "Wilkinson", "Demi", "Demi Steiner", "Steiner"]
 
     return (
         <div>
