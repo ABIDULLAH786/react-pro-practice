@@ -9,10 +9,10 @@ import TableTopRow from './TableTopRow';
 import UsersTableRows from './UsersTableRows';
 
 import styles from "./Table.module.scss"
-import UserTableFooter from './UserTableFooter';
+import Pagination from '../Pagination/Pagination';
 
-export default function UsersTable({ columns, rows }) {
-    
+export default function UsersTable({ columns, rows, total, perPageRec, page, handlePageChange }) {
+
     return (
         <TableContainer component={Paper} className={styles.root}>
             <Table size="small" aria-label="data table" >
@@ -24,7 +24,12 @@ export default function UsersTable({ columns, rows }) {
                 </TableBody>
             </Table>
             <Box style={{ width: '100%' }}>
-                <UserTableFooter data={rows} />
+                <Pagination
+                    totalData={total}
+                    dataPerPage={perPageRec}
+                    paginate={handlePageChange}
+                    currentPage={page}
+                />
             </Box>
         </TableContainer >
     );

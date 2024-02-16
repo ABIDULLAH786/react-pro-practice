@@ -30,7 +30,6 @@ export default function SelectDropdown({ options }) {
                     <MenuItem
                         value={'admin'}
                         style={{ display: 'flex', justifyContent: 'space-between' }}
-                        startIcon={<StarIcon />}
                     >
                         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                             <StarIcon />
@@ -44,7 +43,6 @@ export default function SelectDropdown({ options }) {
                     <MenuItem
                         value={'user'}
                         style={{ display: 'flex', justifyContent: 'space-between' }}
-                        startIcon={<StarIcon />}
                     >
                         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                             <UserIcon color={'#667085'} />

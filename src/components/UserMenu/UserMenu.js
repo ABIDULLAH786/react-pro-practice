@@ -1,5 +1,5 @@
 import React from 'react'
-import { Avatar, IconButton, Tooltip, ListItemIcon, Menu, MenuItem, Divider, Box } from '@mui/material'
+import {  Tooltip, ListItemIcon, Menu, MenuItem, Divider, Box } from '@mui/material'
 import { LogoutIcon } from '../../assets/icons/logout-icon';
 import { useNavigate } from 'react-router-dom';
 import UserAvatar from '../Navbar/UserAvatar';

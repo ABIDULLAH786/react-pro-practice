@@ -4,7 +4,7 @@ import { TableCell, TableRow } from '@mui/material'
 function TableTopRow({ columns }) {
     return <TableRow>
         {columns?.map((column, index) =>
-            <TableCell className={styles.table_heading} style={{ paddingLeft: index == 0 ? "45px" : "" }}>{column}</TableCell>
+            <TableCell key={index} className={styles.table_heading} style={{ paddingLeft: index == 0 ? "45px" : "" }}>{column}</TableCell>
         )}
     </TableRow>
 }
