@@ -5,9 +5,11 @@ import { registerUserAsync } from '../../../redux/slice/auth';
 import { LockIcon } from '../../../assets/icons/lock-icon';
 import { Box, Button } from '@mui/material';
 import styles from './register.module.scss'
-import FormField from '../../../components/FormFiled/FormField';
+import FormPasswordField from '../../../components/FormPasswordFiled/FormPasswordField';
+import FormEmailFiled from '../../../components/FormEmailFiled/FormEmailFiled';
+import FormTextFiled from '../../../components/FormTextFiled/FormTextFiled';
 
-function RegisterForm({ formData, setFormData, handleRegister }) {
+function RegisterForm({ formData, setFormData, handleRegister, isError, setIsError }) {
 
     return (
         <div className={styles.container}>
@@ -19,11 +21,11 @@ function RegisterForm({ formData, setFormData, handleRegister }) {
                 <Box className={styles.form_container}>
                     {/* key input */}
                     <div className={styles.input_container}>
-                        <FormField value={formData?.name} setValue={e => setFormData({ ...formData, name: e.target.value })} label={"Name"} type='text' />
-                        <FormField value={formData?.email} setValue={e => setFormData({ ...formData, email: e.target.value })} label={"Email"} type='email' />
-                        <FormField value={formData?.password} setValue={e => setFormData({ ...formData, password: e.target.value })} type='password' />
+                        <FormTextFiled value={formData?.name} setValue={e => setFormData({ ...formData, name: e.target.value })} label={"Name"} type='text' />
+                        <FormEmailFiled value={formData?.email} setValue={e => setFormData({ ...formData, email: e.target.value })} setIsError={setIsError} isError={isError} label={"Email"} />
+                        <FormPasswordField value={formData?.password} setValue={e => setFormData({ ...formData, password: e.target.value })} setIsError={setIsError} isError={isError} label={"Password"} />
                     </div>
-
+                    {isError.generalError  && <p className={styles.error}>{isError.generalError}</p>}
                     {/* button */}
                     <Button onClick={handleRegister} className={styles.btn} variant="contained">Register</Button>
 

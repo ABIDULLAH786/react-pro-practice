@@ -2,7 +2,7 @@ import { FormControl, InputAdornment, InputLabel, OutlinedInput } from '@mui/mat
 import React from 'react'
 import { makeStyles } from '@mui/styles';
 
-function FormField({ value, setValue, label, type = 'text', icon }) {
+function FormTextFiled({ value, setValue, label, type = 'text', icon}) {
     const classes = useStyles();
     return (
         <div>
@@ -20,13 +20,12 @@ function FormField({ value, setValue, label, type = 'text', icon }) {
                     value={value}
                     onChange={setValue}
                 />
-
             </FormControl>
         </div>
     )
 }
 
-export default FormField
+export default FormTextFiled
 
 export const useStyles = makeStyles(() => ({
     label: {

@@ -15,14 +15,13 @@ function AllUsers() {
     const [currentPageData, setCurrentPageData] = useState([]);
     const [numberOfRecPerPage] = useState(10);
 
+    console.log("in user table")
 
-    console.log("currentPageData:: ", currentPageData)
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
     useEffect(() => {
         // Get current list/page data
         if (userData) {
             const data = extractPageData(userData, currentPage, numberOfRecPerPage)
-            console.log(data)
             setCurrentPageData(data)
         }
     }, [currentPage, userData])

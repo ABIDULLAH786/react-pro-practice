@@ -11,7 +11,6 @@ function AllChats() {
     const [numberOfRecPerPage] = useState(2);
 
 
-    console.log("currentPageData:: ", currentPageData)
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
     useEffect(() => {
         // Get current list/page data

@@ -1,11 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { apiPOST_Tokenless } from '../../../apis';
 
-const initialState = {
-    user: null,
-    token: null,
-    loading: false
-}
+
 
 export const registerUserAsync = createAsyncThunk(
     "register",
@@ -29,7 +25,7 @@ export const registerUserAsync = createAsyncThunk(
 );
 
 export const loginUserAsync = createAsyncThunk(
-    "register",
+    "login",
     async ({ email, password }, thunkAPI) => {
         try {
             thunkAPI.dispatch(registerationStart());
@@ -50,6 +46,11 @@ export const loginUserAsync = createAsyncThunk(
     }
 );
 
+const initialState = {
+    user: null,
+    token: null,
+    loading: false
+}
 const authSlice = createSlice({
     name: 'auth',
     initialState,
@@ -92,6 +93,6 @@ export const {
 } = authSlice.actions
 
 
-export const selectIsUserLogin = (state) => state.auth.loading;
+export const selectIsUserLogin = (state) => state.auth.user;
 
 export default authSlice.reducer
