@@ -46,10 +46,32 @@ export const loginUserAsync = createAsyncThunk(
     }
 );
 
+export const verifyEmailLink = createAsyncThunk(
+    "verify-email",
+    async ({ token }, thunkAPI) => {
+        try {
+
+            thunkAPI.dispatch(verificationStart());
+            const response = await apiPOST_Tokenless("auth/verify-email", { token });
+
+            if (response.status_code === 200) {
+                thunkAPI.dispatch(verificationSuccess());
+            }
+            console.log("response ")
+            return response;
+        } catch (error) {
+            console.log(error)
+            thunkAPI.dispatch(actionFail(error.message));
+        }
+    }
+);
+
 const initialState = {
     user: null,
     token: null,
-    loading: false
+    loading: false,
+    error: null,
+    verify: false,
 }
 const authSlice = createSlice({
     name: 'auth',
@@ -76,6 +98,21 @@ const authSlice = createSlice({
         loginFail: (state) => {
             state.loading = false;
         },
+
+        actionFail: (state, action) => {
+            state.loading = false;
+            state.error = action.payload;
+        },
+
+        verificationStart: (state) => {
+            state.loading = true;
+
+        },
+        verificationSuccess: (state) => {
+            state.loading = false;
+            state.verify = false;
+
+        },
     },
 })
 
@@ -86,13 +123,23 @@ export const {
     registerationSuccess,
     registerationFail,
 
+    // email verification
+    verificationStart,
+    verificationSuccess,
+
     // login
     loginStart,
     loginSuccess,
     loginFail,
+
+    // when any action fails
+    actionFail,
 } = authSlice.actions
 
 
 export const selectIsUserLogin = (state) => state.auth.user;
+export const selectIsLoading = (state) => state.auth.loading;
+export const selectIsVerify = (state) => state.auth.verify;
+export const selectError = (state) => state.auth.error;
 
 export default authSlice.reducer

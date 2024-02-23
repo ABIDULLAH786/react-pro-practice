@@ -26,7 +26,7 @@ const Register = () => {
             setIsError({ ...isError, generalError: "Please resolve all errors first" })
             return
         }
-        // dispatch(registerUserAsync({ ...formData }))
+        // dispatch(registerUserAsync({ ...formData })).then(res=>)
         // errorAlert();
         // successAlert();
     }
