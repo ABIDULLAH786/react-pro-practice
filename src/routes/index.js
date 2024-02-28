@@ -10,11 +10,15 @@ import AllChats from '../pages/admin/all-chats'
 import AdminChat from '../pages/admin/chat'
 import Register from '../pages/register'
 import ConfirmationPage from '../pages/confirmation-page'
+import ForgetPassword from '../pages/forget-password'
+import NewPassowrdPage from '../pages/set-new-password'
 function RoutesContainer() {
     return (
         <div >
             <Routes>
                 <Route path="/" element={<Login />} />
+                <Route path="/forget-password" element={<ForgetPassword />} />
+                <Route path="/set-new-password" element={<NewPassowrdPage />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/verify-email" element={<ConfirmationPage />} />
 

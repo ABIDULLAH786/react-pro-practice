@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useParams, useSearchParams } from 'react-router-dom';
-import { selectError, selectIsLoading, selectIsVerify, verifyEmailLink } from '../../redux/slice/auth';
+import { selectError, selectIsLoading, verifyEmailLink } from '../../redux/slice/auth';
 
 const ConfirmationPage = () => {
     const path = useLocation();
@@ -14,25 +14,26 @@ const ConfirmationPage = () => {
 
     const [verificationMessage, setVerificationMessage] = useState('');
     const dispatch = useDispatch();
-    const isVerify = useSelector(selectIsVerify)
     const isLoading = useSelector(selectIsLoading)
     const isError = useSelector(selectError)
+    console.log("isError: ", isError)
+    console.log("isLoading: ", isLoading)
     useEffect(() => {
-        dispatch(verifyEmailLink(token))
+        token && dispatch(verifyEmailLink(token))
         console.log("in use Effect", token)
     }, [token]);
     useEffect(() => {
-        if (!isLoading && isVerify) {
+        if (!isLoading && !isError) {
             setVerificationMessage('Congratulations! Your email has been verified successfully.');
         } else if (!isLoading && isError) {
             setVerificationMessage('Error: Token expired or invalid');
         }
-    }, [isLoading, isVerify, isError])
+    }, [isLoading, isError])
     return (
         <div>
             <h1>Email Verification</h1>
 
-            {isLoading ? <p>Loagin...</p> : <div>
+            {isLoading ? <p>Loading...</p> : <div>
                 <p>{verificationMessage}</p>
             </div>}
         </div>

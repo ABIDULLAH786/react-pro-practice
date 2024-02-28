@@ -7,19 +7,15 @@ export const registerUserAsync = createAsyncThunk(
     "register",
     async ({ email, password, name, }, thunkAPI) => {
         try {
-            thunkAPI.dispatch(registerationStart());
+            thunkAPI.dispatch(actionStart());
             const response = await apiPOST_Tokenless("auth/register", {
                 name, email, password
             });
-
-            if (response.status_code == 200) {
+            if (response.status == 200) {
                 thunkAPI.dispatch(registerationSuccess(response));
-
             }
-            console.log(response)
-            return response;
         } catch (error) {
-            thunkAPI.dispatch(registerationFail(error.message));
+            thunkAPI.dispatch(actionFail(error.message));
         }
     }
 );
@@ -28,37 +24,39 @@ export const loginUserAsync = createAsyncThunk(
     "login",
     async ({ email, password }, thunkAPI) => {
         try {
-            thunkAPI.dispatch(registerationStart());
+            thunkAPI.dispatch(actionStart());
             const response = await apiPOST_Tokenless("auth/login", {
                 email, password
             });
-
+            const data = await response.json();
             if (response.status_code == 200) {
-                thunkAPI.dispatch(registerationSuccess(response));
-                localStorage.setItem("user", JSON.stringify(response.user))
-                localStorage.setItem("token", JSON.stringify(response.tokens))
+                thunkAPI.dispatch(loginSuccess(data));
+                localStorage.setItem("user", JSON.stringify(data.user))
+                localStorage.setItem("token", JSON.stringify(data.tokens))
             }
             console.log(response)
-            return response;
+            return data;
         } catch (error) {
-            thunkAPI.dispatch(registerationFail(error.message));
+            thunkAPI.dispatch(actionFail(error.message));
         }
     }
 );
 
 export const verifyEmailLink = createAsyncThunk(
     "verify-email",
-    async ({ token }, thunkAPI) => {
+    async (token, thunkAPI) => {
         try {
 
-            thunkAPI.dispatch(verificationStart());
+            thunkAPI.dispatch(actionStart());
             const response = await apiPOST_Tokenless("auth/verify-email", { token });
-
-            if (response.status_code === 200) {
+            const data = await response.json();
+            if (response.status === 200) {
                 thunkAPI.dispatch(verificationSuccess());
+            } else {
+                thunkAPI.dispatch(actionFail(data?.message));
             }
-            console.log("response ")
-            return response;
+            console.log("response of verify email api", response)
+            return response.json();
         } catch (error) {
             console.log(error)
             thunkAPI.dispatch(actionFail(error.message));
@@ -66,80 +64,121 @@ export const verifyEmailLink = createAsyncThunk(
     }
 );
 
+export const requestForgetPasswordAsync = createAsyncThunk(
+    "forgot-password",
+    async ({ email }, thunkAPI) => {
+        try {
+            thunkAPI.dispatch(actionStart());
+            const response = await apiPOST_Tokenless("auth/forgot-password", { email });
+            const data = await response.json()
+            if (response.status == 200) {
+                thunkAPI.dispatch(requestForgetPasswordSuccess(data));
+            } else {
+                thunkAPI.dispatch(actionFail(data.message));
+            }
+            console.log("response of forget password", response)
+            console.log(data)
+            return data;
+        } catch (error) {
+            thunkAPI.dispatch(actionFail(error.message));
+        }
+    }
+);
+
+export const resetPasswordAsync = createAsyncThunk(
+    "reset-password",
+    async ({ password, token }, thunkAPI) => {
+        try {
+            thunkAPI.dispatch(actionStart());
+            const response = await apiPOST_Tokenless("auth/reset-password", { password, token });
+            const data = await response.json()
+            if (response.status == 200) {
+                thunkAPI.dispatch(resetPasswordSuccess(data));
+            }
+            console.log("response of reset password", response)
+            console.log(data)
+        } catch (error) {
+            thunkAPI.dispatch(actionFail(error.message));
+        }
+    }
+);
+
+
 const initialState = {
     user: null,
     token: null,
     loading: false,
     error: null,
-    verify: false,
+    success: false,
 }
 const authSlice = createSlice({
     name: 'auth',
     initialState,
     reducers: {
-        registerationStart: (state) => {
+        actionStart: (state) => {
             state.loading = true;
+            state.success = false;
+            state.error = null
         },
-        registerationSuccess: (state) => {
-            state.loading = true;
-        },
-        registerationFail: (state) => {
-            state.loading = false;
-        },
-
-        loginStart: (state) => {
-            state.loading = true;
-        },
-        loginSuccess: (state, payload) => {
-            state.loading = true;
-            state.user = payload.user;
-            state.token = payload.tokens;
-        },
-        loginFail: (state) => {
-            state.loading = false;
-        },
-
         actionFail: (state, action) => {
             state.loading = false;
+            state.success = false;
             state.error = action.payload;
         },
 
-        verificationStart: (state) => {
+        registerationSuccess: (state) => {
             state.loading = true;
-
+            state.success = true;
         },
+
+
+        loginSuccess: (state, payload) => {
+            state.loading = false;
+            state.user = payload.user;
+            state.token = payload.tokens;
+            state.success = true;
+        },
+
+
         verificationSuccess: (state) => {
             state.loading = false;
-            state.verify = false;
-
+            state.success = true;
         },
+
+        requestForgetPasswordSuccess: (state) => {
+            state.loading = false;
+            state.success = true;
+        },
+        resetPasswordSuccess: (state) => {
+            state.loading = false;
+            state.success = true;
+        }
     },
 })
 
 // Action creators are generated for each case reducer function
 export const {
+    // when any action fails
+    actionFail,
+    actionStart,
+
     // register
-    registerationStart,
     registerationSuccess,
-    registerationFail,
 
     // email verification
-    verificationStart,
     verificationSuccess,
 
     // login
-    loginStart,
     loginSuccess,
-    loginFail,
 
-    // when any action fails
-    actionFail,
+    requestForgetPasswordSuccess, // request forgot password
+    resetPasswordSuccess, // reset new password
 } = authSlice.actions
 
 
 export const selectIsUserLogin = (state) => state.auth.user;
 export const selectIsLoading = (state) => state.auth.loading;
-export const selectIsVerify = (state) => state.auth.verify;
 export const selectError = (state) => state.auth.error;
+export const selectIsSuccess = (state) => state.auth.success;
 
 export default authSlice.reducer

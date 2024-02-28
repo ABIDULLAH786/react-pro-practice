@@ -24,7 +24,7 @@ const apiPOST_Tokenless = async (api, body) => {
         },
         body: JSON.stringify(body),
     });
-    return await res.json();
+    return res;
 };
 
 const apiGET = async (api, query = {}) => {
